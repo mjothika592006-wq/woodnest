@@ -1,0 +1,263 @@
+const { dbEngine } = require('./db');
+
+const seedProducts = [
+  {
+    name: "Aurelia Velvet Sectional",
+    description: "Plush, tailored emerald velvet sectional with customizable modular configurations. Deep seat cushions and high-density foam filling offer unparalleled luxury comfort, elevated by sleek, satin-finished brass stiletto legs.",
+    price: 3450,
+    images: [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Sofas",
+    material: "Velvet",
+    colors: ["#0F4A42", "#5D4037", "#BCAAA4"],
+    dimensions: "120\"W x 38\"D x 34\"H",
+    stock: 8,
+    ratings: 4.8,
+    features: ["Modular interlocking design", "Stain-resistant velvet upholstery", "Polished steel legs", "Premium down-wrapped cushions"],
+    isTrending: true,
+    isBestSeller: false,
+    isSustainable: false
+  },
+  {
+    name: "Oslo Walnut Armchair",
+    description: "Sleek, Scandinavian design lounge chair. Premium full-grain black leather cushions are nestled beautifully in a hand-sculpted, solid American Walnut frame. Ergonomically angled for ultimate leisure reading.",
+    price: 1200,
+    images: [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1506898667547-42e22a46e125?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Chairs",
+    material: "Walnut",
+    colors: ["#3E2723", "#1A1A1A"],
+    dimensions: "32\"W x 34\"D x 32\"H",
+    stock: 12,
+    ratings: 4.9,
+    features: ["100% Solid American Walnut", "Top-grain Italian aniline leather", "Hand-finished joint connections", "Lifetime frame warranty"],
+    isTrending: true,
+    isBestSeller: true,
+    isSustainable: false
+  },
+  {
+    name: "Koto Marble Table",
+    description: "An organically flowing, kidney-shaped travertine dining or low coffee table. Each unit exhibits unique, beautiful cream-toned fossilized patterns and natural, unpolished earth textures, sourced from sustainable Italian quarries.",
+    price: 890,
+    images: [
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Dining Tables",
+    material: "Marble",
+    colors: ["#EFEBE9", "#BCAAA4"],
+    dimensions: "48\"W x 30\"D x 16\"H",
+    stock: 6,
+    ratings: 4.7,
+    features: ["Genuine Italian travertine marble", "Fluid organic form factor", "Matte acid-sealed stain barrier", "Crafted by hand in Tuscany"],
+    isTrending: false,
+    isBestSeller: false,
+    isSustainable: true
+  },
+  {
+    name: "Luna Boucle Chair",
+    description: "Envelop yourself in pure comfort with the Luna Swivel Chair. Upholstered in premium, highly textured cream boucle, this rounded chair sits on an invisible 360-degree heavy swivel plate, matching modern retro luxury vibes.",
+    price: 1550,
+    images: [
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Chairs",
+    material: "Velvet",
+    colors: ["#FAF8F5", "#D7CCC8"],
+    dimensions: "36\"W x 36\"D x 30\"H",
+    stock: 15,
+    ratings: 4.9,
+    features: ["Thick-weave luxury wool boucle", "360-degree steel bearing swivel", "Kiln-dried hardwood interior structure", "Deep spring support deck"],
+    isTrending: true,
+    isBestSeller: false,
+    isSustainable: false
+  },
+  {
+    name: "Soren Side Table",
+    description: "Exquisite minimalist end table or bedside table. Crafted from premium light-stained solid white oak wood with rounded legs, soft-flowing lines, and a smooth push-to-open drawer for elegant decluttering.",
+    price: 420,
+    images: [
+      "https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Dining Tables",
+    material: "Solid Oak",
+    colors: ["#F5F5DC", "#D7CCC8"],
+    dimensions: "20\"W x 18\"D x 24\"H",
+    stock: 20,
+    ratings: 4.6,
+    features: ["White oak solid wood", "Push-to-open hidden drawer sliders", "Organic curved corner profiles", "Spill resistant finish"],
+    isTrending: false,
+    isBestSeller: true,
+    isSustainable: false
+  },
+  {
+    name: "Biblios Wall Unit",
+    description: "An architectural statement storage and display unit. High-end fluted backing detailing with custom-adjustable thick shelving. Elegant deep espresso oil rub showcases beautiful heavy grains of natural solid oak wood.",
+    price: 2100,
+    images: [
+      "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Office Furniture",
+    material: "Solid Oak",
+    colors: ["#2C1E1A", "#3E2723"],
+    dimensions: "72\"W x 14\"D x 84\"H",
+    stock: 5,
+    ratings: 4.8,
+    features: ["Premium thick oak veneer paneling", "Six adjustable display boards", "Integrated back wall cord ports", "Reinforced anchor safety hardware"],
+    isTrending: true,
+    isBestSeller: false,
+    isSustainable: false
+  },
+  {
+    name: "Elowen Dining Chair",
+    description: "Graceful dining chair featuring dynamic molded walnut backing and sleek comfortable cushioning. Perfect for long luxurious dinner parties.",
+    price: 840,
+    images: [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Chairs",
+    material: "Walnut",
+    colors: ["#3E2723", "#1A1A1A"],
+    dimensions: "22\"W x 24\"D x 34\"H",
+    stock: 24,
+    ratings: 4.7,
+    features: ["Solid walnut back rest", "Premium textured weave upholstery"],
+    isTrending: false,
+    isBestSeller: false,
+    isSustainable: false
+  },
+  {
+    name: "Soren Coffee Table",
+    description: "Minimalist solid oak coffee table showing beautiful oak grains with soft flowing curves.",
+    price: 1250,
+    images: [
+      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Dining Tables",
+    material: "Solid Oak",
+    colors: ["#F5F5DC", "#FAF8F5"],
+    dimensions: "44\"W x 44\"D x 15\"H",
+    stock: 14,
+    ratings: 4.8,
+    features: ["White oak structural pillars", "Hand-waxed matte lacquer"],
+    isTrending: true,
+    isBestSeller: false,
+    isSustainable: true
+  },
+  {
+    name: "Mesa Marble Table",
+    description: "Premium dining table with organic curved solid travertine legs and marble table top.",
+    price: 4400,
+    images: [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Dining Tables",
+    material: "Marble",
+    colors: ["#EFEBE9", "#FAF8F5"],
+    dimensions: "84\"W x 40\"D x 30\"H",
+    stock: 4,
+    ratings: 4.9,
+    features: ["Imported Carrara Marble", "Travertine structured base columns"],
+    isTrending: true,
+    isBestSeller: false,
+    isSustainable: false
+  },
+  {
+    name: "Hour Leather Ottoman",
+    description: "Premium cognac colored leather upholstered ottoman with circular fluted stitched seam profiles.",
+    price: 620,
+    images: [
+      "https://images.unsplash.com/photo-1519148244005-1212d7df205a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Chairs",
+    material: "Leather",
+    colors: ["#8D6E63", "#3E2723"],
+    dimensions: "24\"W x 24\"D x 16\"H",
+    stock: 15,
+    ratings: 4.7,
+    features: ["Top grain cowhide aniline leather", "Fluted stitched perimeter detailing"],
+    isTrending: false,
+    isBestSeller: true,
+    isSustainable: false
+  },
+  {
+    name: "Walnut Spindle Bed",
+    description: "Crafted out of solid American Walnut, this premium bed frame showcases high wooden spindle spindles with low profile side borders.",
+    price: 2450,
+    images: [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Beds",
+    material: "Walnut",
+    colors: ["#3E2723", "#8D6E63"],
+    dimensions: "82\"W x 86\"D x 48\"H",
+    stock: 10,
+    ratings: 4.8,
+    features: ["Solid walnut spindle headboard", "Extra support steel center framing"],
+    isTrending: true,
+    isBestSeller: false,
+    isSustainable: false
+  },
+  {
+    name: "Artisanal Wooden Wardrobe",
+    description: "Stately 3-panel wardrobe closet with custom fluted wooden slats and brass accents.",
+    price: 3200,
+    images: [
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80"
+    ],
+    category: "Wardrobes",
+    material: "Solid Oak",
+    colors: ["#3E2723", "#2C1E1A"],
+    dimensions: "60\"W x 22\"D x 78\"H",
+    stock: 6,
+    ratings: 4.9,
+    features: ["Full cedar lined drawers", "Anti-slam soft closing doors"],
+    isTrending: false,
+    isBestSeller: false,
+    isSustainable: true
+  }
+];
+
+const seedDB = async () => {
+  try {
+    const existingProducts = await dbEngine.find('Product');
+    if (existingProducts.length === 0) {
+      console.log('🌱 Seeding products into WoodNest database catalog...');
+      for (const prod of seedProducts) {
+        await dbEngine.create('Product', prod);
+      }
+      console.log(`✅ Seeded ${seedProducts.length} luxury products successfully.`);
+    } else {
+      console.log('ℹ️ WoodNest catalog already has seeded products. Skipping seeder.');
+    }
+  } catch (err) {
+    console.error('❌ Failed seeding WoodNest catalog:', err);
+  }
+};
+
+module.exports = { seedDB };
